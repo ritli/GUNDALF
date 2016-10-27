@@ -10,6 +10,8 @@ public class ManagerSingleton : MonoBehaviour {
 	void Start () {
         if (FindObjectsOfType<ManagerSingleton>().Length > 1)
         {
+            Debug.Log("AWAT");
+
             Destroy(gameObject);
         }
         else
@@ -17,8 +19,6 @@ public class ManagerSingleton : MonoBehaviour {
             Init();
 
             m_instance = this;
-
-            InvokeRepeating("BulletCleanup", 5f, 5f);
         }
     }
 

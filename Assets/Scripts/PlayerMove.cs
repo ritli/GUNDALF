@@ -34,7 +34,7 @@ public class PlayerMove : MonoBehaviour {
 
     void Move(Vector2 dir)
     {
-        m_rigidbody.AddForce(dir * m_moveSpeed, ForceMode2D.Impulse);
+        m_rigidbody.AddForce(dir * m_moveSpeed * Time.deltaTime, ForceMode2D.Impulse);
 
         int direction = 0;
 

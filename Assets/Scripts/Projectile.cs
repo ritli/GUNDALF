@@ -49,5 +49,15 @@ public class Projectile : MonoBehaviour {
         GetComponentInChildren<ParticlesTimed>().Detach();
         Destroy(gameObject);
     }
+
+    public void SetLayer(int id)
+    {
+        GetComponent<SpriteRenderer>().sortingLayerID = id;
+        if (transform.GetChild(0))
+        { 
+            transform.GetChild(0).GetComponent<ParticleSystem>().GetComponent<Renderer>().sortingLayerID = id;
+        }
+
+    }
     
 }   

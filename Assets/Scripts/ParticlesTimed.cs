@@ -16,6 +16,8 @@ public class ParticlesTimed : MonoBehaviour {
 
     void Start()
     {
+        m_particles = GetComponent<ParticleSystem>();
+
         if (m_decayColor)
         {
             m_fromAlpha = 1;
@@ -51,7 +53,6 @@ public class ParticlesTimed : MonoBehaviour {
 
     public void Detach()
     {
-        m_particles = GetComponent<ParticleSystem>();
         transform.parent = null;
         m_detached = true;
     }

@@ -52,7 +52,8 @@ public class PlayerGun : MonoBehaviour {
             {
                 m_reloadplayed = false;
                 m_currentCD = 0f;
-                Instantiate(m_bullet, transform.position + transform.up * 0.8f, transform.rotation);
+                Projectile p = ((GameObject)Instantiate(m_bullet, transform.position + transform.up * 0.8f, transform.rotation)).GetComponent<Projectile>();
+                p.SetLayer(GetComponent<SpriteRenderer>().sortingLayerID);
                 PlayGunshot();
             }
             else
