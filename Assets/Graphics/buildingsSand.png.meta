@@ -1,0 +1,255 @@
+fileFormatVersion: 2
+guid: 51bff12caa743e54d9c24eb94b57fcec
+timeCreated: 1477530885
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: buildingsSand_0
+    21300002: buildingsSand_1
+    21300004: buildingsSand_2
+    21300006: buildingsSand_3
+    21300008: buildingsSand_4
+    21300010: buildingsSand_5
+    21300012: buildingsSand_6
+    21300014: buildingsSand_7
+    21300016: buildingsSand_8
+    21300018: buildingsSand_9
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 32
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: buildingsSand_0
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 608
+        width: 96
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -48, y: 80}
+        - {x: -48, y: -80}
+        - {x: 48, y: -80}
+        - {x: 48, y: 80}
+    - name: buildingsSand_1
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 608
+        width: 128
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -34, y: 80}
+        - {x: -34, y: 50}
+        - {x: -64, y: 50}
+        - {x: -64, y: -80}
+        - {x: 64, y: -80}
+        - {x: 64, y: 80}
+    - name: buildingsSand_2
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 544
+        width: 160
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -80, y: 112}
+        - {x: -80, y: -50}
+        - {x: -50, y: -50}
+        - {x: -50, y: -112}
+        - {x: 50, y: -112}
+        - {x: 50, y: -50}
+        - {x: 80, y: -50}
+        - {x: 80, y: 112}
+    - name: buildingsSand_3
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 544
+        width: 160
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 80, y: 82}
+        - {x: 18, y: 82}
+        - {x: 18, y: 112}
+        - {x: -80, y: 112}
+        - {x: -80, y: -112}
+        - {x: 18, y: -112}
+        - {x: 18, y: -82}
+        - {x: 80, y: -82}
+    - name: buildingsSand_4
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 576
+        width: 320
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 62, y: -112}
+        - {x: 160, y: -112}
+        - {x: 160, y: 112}
+        - {x: 62, y: 112}
+        - {x: 62, y: 82}
+        - {x: -62, y: 82}
+        - {x: -62, y: 112}
+        - {x: -160, y: 112}
+        - {x: -160, y: -112}
+        - {x: -62, y: -112}
+        - {x: -62, y: -82}
+        - {x: 62, y: -82}
+    - name: buildingsSand_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 224
+        width: 352
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -50, y: -112}
+        - {x: 50, y: -112}
+        - {x: 50, y: -82}
+        - {x: 110, y: -82}
+        - {x: 110, y: -112}
+        - {x: 176, y: -112}
+        - {x: 176, y: 82}
+        - {x: 50, y: 82}
+        - {x: 50, y: 112}
+        - {x: -50, y: 112}
+        - {x: -50, y: 82}
+        - {x: -176, y: 82}
+        - {x: -176, y: -112}
+        - {x: -110, y: -112}
+        - {x: -110, y: -82}
+        - {x: -50, y: -82}
+    - name: buildingsSand_6
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 352
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 64}
+        - {x: -64, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 64}
+    - name: buildingsSand_7
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 352
+        width: 288
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -144, y: 64}
+        - {x: -144, y: -64}
+        - {x: 144, y: -64}
+        - {x: 144, y: 64}
+    - name: buildingsSand_8
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 192
+        width: 64
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32, y: 144}
+        - {x: -32, y: -144}
+        - {x: 32, y: -144}
+        - {x: 32, y: 144}
+    - name: buildingsSand_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 96
+        width: 352
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 176, y: 82}
+        - {x: 114, y: 82}
+        - {x: 114, y: 112}
+        - {x: -114, y: 112}
+        - {x: -114, y: 82}
+        - {x: -176, y: 82}
+        - {x: -176, y: -82}
+        - {x: -114, y: -82}
+        - {x: -114, y: -112}
+        - {x: 114, y: -112}
+        - {x: 114, y: -82}
+        - {x: 176, y: -82}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
