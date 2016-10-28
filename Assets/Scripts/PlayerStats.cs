@@ -7,7 +7,7 @@ public class PlayerStats : MonoBehaviour {
     public int m_currenthealth;
 
 	void Start () {
-	
+        ReceiveDamage(0);
 	}
 	
 	void Update () {
@@ -18,5 +18,7 @@ public class PlayerStats : MonoBehaviour {
     {
         m_currenthealth -= amount;
         Mathf.Clamp(m_currenthealth, 0, m_health);
+
+        ManagerSingleton.GetCanvas().UpdateHealthbar(m_currenthealth, m_health);
     }
 }

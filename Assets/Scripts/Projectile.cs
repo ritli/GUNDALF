@@ -46,16 +46,16 @@ public class Projectile : MonoBehaviour {
         if (m_explosionObject)
             Instantiate(m_explosionObject, transform.position, Quaternion.identity);
         GetComponentInChildren<ParticlesTimed>().SetSpeed(transform.up, m_speed);
-        GetComponentInChildren<ParticlesTimed>().Detach();
+        GetComponentInChildren<ParticlesTimed>().DetachFromParent();
         Destroy(gameObject);
     }
 
     public void SetLayer(int id)
     {
-        GetComponent<SpriteRenderer>().sortingLayerID = id;
+        GetComponent<SpriteRenderer>().sortingOrder = id;
         if (transform.GetChild(0))
         { 
-            transform.GetChild(0).GetComponent<ParticleSystem>().GetComponent<Renderer>().sortingLayerID = id;
+            transform.GetChild(0).GetComponent<ParticleSystemRenderer>().sortingOrder = id;
         }
 
     }

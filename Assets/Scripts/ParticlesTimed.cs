@@ -17,6 +17,7 @@ public class ParticlesTimed : MonoBehaviour {
     void Start()
     {
         m_particles = GetComponent<ParticleSystem>();
+        GetComponent<ParticleSystemRenderer>().sortingOrder = Mathf.FloorToInt(-transform.position.y * 10);
 
         if (m_decayColor)
         {
@@ -25,7 +26,7 @@ public class ParticlesTimed : MonoBehaviour {
 
         if (m_detached)
         {
-            Detach();
+            DetachFromParent();
         }
     }
 
@@ -51,7 +52,7 @@ public class ParticlesTimed : MonoBehaviour {
         m_direction = dir * speed;
     }
 
-    public void Detach()
+    public void DetachFromParent()
     {
         transform.parent = null;
         m_detached = true;

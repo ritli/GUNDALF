@@ -4,6 +4,7 @@ using System.Collections;
 public class ManagerSingleton : MonoBehaviour {
 
     PlayerMove m_player;
+    UIManager m_canvas;
 
     static ManagerSingleton m_instance;
 
@@ -25,6 +26,12 @@ public class ManagerSingleton : MonoBehaviour {
     void Init()
     {
         m_player = FindObjectOfType<PlayerMove>();
+        m_canvas = FindObjectOfType<UIManager>();
+    }
+
+    public static UIManager GetCanvas()
+    {
+        return m_instance.m_canvas;
     }
 
     public static PlayerMove GetPlayer()
