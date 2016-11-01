@@ -10,11 +10,6 @@ public class UIManager : MonoBehaviour {
 	void Start () {
         Time.timeScale = 0;
 	}
-	
-	void Update () {
-	
-        
-	}
 
     public void UpdateHealthbar(int currenthealth, int maxhealth)
     {

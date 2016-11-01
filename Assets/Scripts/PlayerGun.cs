@@ -6,9 +6,11 @@ public class PlayerGun : MonoBehaviour {
     public GameObject m_bullet;
     public float m_cooldown;
     float m_currentCD;
+
     SpriteRenderer m_sprite;
     PlayerMove m_player;
     AudioSource m_audio;
+    CameraController m_camera;
 
     bool m_reloadplayed = false;
 
@@ -19,12 +21,15 @@ public class PlayerGun : MonoBehaviour {
         m_audio = GetComponent<AudioSource>();
         m_sprite = GetComponent<SpriteRenderer>();
         m_player = GetComponentInParent<PlayerMove>();
-	}
+        m_camera = Camera.main.GetComponent<CameraController>();
+    }
 	
 	void Update () {
-        LookAtMouse();
-        Shoot();
-	}
+        if (!m_player.m_controlsDisabled) { 
+            LookAtMouse();
+            Shoot();
+        }
+    }
 
     void LookAtMouse()
     {
@@ -36,11 +41,11 @@ public class PlayerGun : MonoBehaviour {
 
         if (m_player.GetDirection() == 4)
         {
-            m_sprite.sortingOrder = m_player.GetComponent<SpriteRenderer>().sortingOrder - 1;
+            m_sprite.sortingOrder = m_player.GetComponent<SpriteRenderer>().sortingOrder - 2;
         }
         else
         {
-            m_sprite.sortingOrder = m_player.GetComponent<SpriteRenderer>().sortingOrder + 1;
+            m_sprite.sortingOrder = m_player.GetComponent<SpriteRenderer>().sortingOrder + 2;
         }
     }
 
@@ -55,6 +60,7 @@ public class PlayerGun : MonoBehaviour {
                 Projectile p = ((GameObject)Instantiate(m_bullet, transform.position + transform.up * 0.8f, transform.rotation)).GetComponent<Projectile>();
                 p.SetLayer(GetComponent<SpriteRenderer>().sortingOrder);
                 PlayGunshot();
+                m_camera.SetScreenShake(0.2f, 1f);
             }
             else
             {
