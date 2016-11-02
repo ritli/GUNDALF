@@ -60,7 +60,7 @@ public class PlayerGun : MonoBehaviour {
                 Projectile p = ((GameObject)Instantiate(m_bullet, transform.position + transform.up * 0.8f, transform.rotation)).GetComponent<Projectile>();
                 p.SetLayer(GetComponent<SpriteRenderer>().sortingOrder);
                 PlayGunshot();
-                m_camera.SetScreenShake(0.2f, 1f);
+                m_camera.SetScreenShake(m_cooldown, 1f);
             }
             else
             {

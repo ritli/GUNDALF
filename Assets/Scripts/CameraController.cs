@@ -50,9 +50,9 @@ public class CameraController : MonoBehaviour {
 
     public void SetScreenShake(float time, float amount)
     {
-        if (m_shakeAmount != 0)
+        if (amount != 0)
         {
-            Invoke("StopScreenShake", amount);
+            Invoke("StopScreenShake", time);
         }
 
         m_shakeAmount = amount;
