@@ -6,6 +6,7 @@ public class PlayerStats : MonoBehaviour {
     public int m_health;
     public int m_currenthealth;
 
+
 	void Start () {
         ReceiveDamage(0);
 	}
