@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerStats : MonoBehaviour {
 
     public int m_health;
     public int m_currenthealth;
-
+    public List<Item> m_itemList;
 
 	void Start () {
+        //Updates Healthbar with current health
         ReceiveDamage(0);
 	}
 	
-	void Update () {
-	
-	}
+    public void AddItem(Item i)
+    {
+        m_itemList.Add(i);
+    }
 
     public void ReceiveDamage(int amount)
     {

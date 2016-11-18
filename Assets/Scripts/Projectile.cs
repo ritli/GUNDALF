@@ -4,10 +4,13 @@ using System.Collections;
 public class Projectile : MonoBehaviour {
 
     public GameObject m_explosionObject;
+    public LayerMask m_CollisionLayers;
 
     public float m_speed;
     public int m_damage;
     public float m_deathTime;
+
+    Collider2D m_col;
 
     public void Init(float speed, float damage)
     {
@@ -17,6 +20,8 @@ public class Projectile : MonoBehaviour {
 
     void Start()
     {
+        m_col = GetComponent<Collider2D>();
+
         Invoke("DestroyThis", m_deathTime);
     }
 
@@ -26,17 +31,26 @@ public class Projectile : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D c)
     {
-        if (c.GetComponent<AIStats>())
+        if (m_col.IsTouchingLayers(m_CollisionLayers)) //Walls and shit
+        {
+            DestroyThis();
+        }
+        
+        else if (c.CompareTag("Enemy")) //Enemy
         {
             c.GetComponent<AIStats>().ReceiveDamage(m_damage);
             DestroyThis();
         }
-        else if (c.GetComponent<PlayerMove>() || c.GetComponent<Projectile>()) 
+        else if (c.CompareTag(("Player"))) //Player
         {
             //Do nothing
         }
-        else
+        else if (c.CompareTag(("Item"))) //Item
         {
+            Item i = c.GetComponent<Item>();
+
+            ManagerSingleton.GetPlayer().GetComponent<PlayerStats>().AddItem(i);
+            i.DestroyItem();
             DestroyThis();
         }
     }
@@ -45,6 +59,7 @@ public class Projectile : MonoBehaviour {
     {
         if (m_explosionObject)
             Instantiate(m_explosionObject, transform.position, Quaternion.identity);
+
         GetComponentInChildren<ParticlesTimed>().SetSpeed(transform.up, m_speed);
         GetComponentInChildren<ParticlesTimed>().DetachFromParent();
         Destroy(gameObject);

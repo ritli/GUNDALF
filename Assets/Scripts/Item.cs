@@ -12,4 +12,9 @@ public class Item : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public void DestroyItem()
+    {
+        Destroy(gameObject);
+    }
 }
