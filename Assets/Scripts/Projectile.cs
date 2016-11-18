@@ -6,11 +6,14 @@ public class Projectile : MonoBehaviour {
     public GameObject m_explosionObject;
     public LayerMask m_CollisionLayers;
 
+    public bool m_hostile;
     public float m_speed;
     public int m_damage;
     public float m_deathTime;
 
     Collider2D m_col;
+
+    
 
     public void Init(float speed, float damage)
     {
@@ -45,12 +48,10 @@ public class Projectile : MonoBehaviour {
         {
             //Do nothing
         }
-        else if (c.CompareTag(("Item"))) //Item
+        else if (c.CompareTag(("Item")) && !m_hostile) //Item
         {
-            Item i = c.GetComponent<Item>();
-
-            ManagerSingleton.GetPlayer().GetComponent<PlayerStats>().AddItem(i);
-            i.DestroyItem();
+            Manager.GetPlayer().GetComponent<PlayerStats>().AddItem(c.gameObject);
+            c.GetComponent<Item>().DestroyItem(true);
             DestroyThis();
         }
     }

@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour {
 
     void GetPlayerPosition(ref Vector3 position)
     {
-        position = ManagerSingleton.GetPlayer().transform.position;
+        position = Manager.GetPlayer().transform.position;
         position.z = transform.position.z;
     }
 

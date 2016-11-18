@@ -1,18 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ManagerSingleton : MonoBehaviour {
+public class Manager : MonoBehaviour {
 
     PlayerMove m_player;
     UIManager m_canvas;
 
-    static ManagerSingleton m_instance;
+    static Manager m_instance;
 
 	void Start () {
-        if (FindObjectsOfType<ManagerSingleton>().Length > 1)
+        if (FindObjectsOfType<Manager>().Length > 1)
         {
-            Debug.Log("AWAT");
-
             Destroy(gameObject);
         }
         else

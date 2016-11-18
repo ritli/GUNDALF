@@ -73,7 +73,7 @@ public class AIBlob : MonoBehaviour {
 
     void MoveToPlayer()
     {
-        m_distToPlayer = (ManagerSingleton.GetPlayer().transform.position - transform.position);
+        m_distToPlayer = (Manager.GetPlayer().transform.position - transform.position);
 
         transform.Translate(m_distToPlayer.normalized * m_stats.m_speed * Time.deltaTime);
 
@@ -97,11 +97,11 @@ public class AIBlob : MonoBehaviour {
 
         ani.SetInteger("State", 0);
 
-        m_distToPlayer = (ManagerSingleton.GetPlayer().transform.position - transform.position);
+        m_distToPlayer = (Manager.GetPlayer().transform.position - transform.position);
 
         if (m_distToPlayer.magnitude < m_attackRange)
         {
-            ManagerSingleton.GetPlayer().GetComponent<PlayerStats>().ReceiveDamage(m_damage);
+            Manager.GetPlayer().GetComponent<PlayerStats>().ReceiveDamage(m_damage);
         }
 
         m_state = State.IDLE;

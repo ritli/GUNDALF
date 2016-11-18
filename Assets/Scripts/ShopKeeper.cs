@@ -12,13 +12,25 @@ public class ShopKeeper : MonoBehaviour {
     ShopKeeperArea m_area;
 
     public bool m_spawnShopItems = false;
+    public bool m_clearList = false;
 
     void OnDrawGizmosSelected()
     {
+        if (m_clearList)
+        {
+            m_spawnedItems = null;
+            m_clearList = false;
+        }
+
         if (m_spawnShopItems)
         {
             if (m_spawnedItems == null || m_spawnedItems.Length != shopItems.Length)
             {
+                if (m_spawnedItems == null)
+                {
+                    m_spawnedItems = new GameObject[shopItems.Length];
+                }
+
                 if (m_spawnedItems.Length > shopItems.Length)
                 {
                     for (int i = shopItems.Length; i < m_spawnedItems.Length; i++)
@@ -27,10 +39,6 @@ public class ShopKeeper : MonoBehaviour {
                     }
                 }
 
-                if (m_spawnedItems == null)
-                { 
-                    m_spawnedItems = new GameObject[shopItems.Length];
-                }
                 else
                 {
                     GameObject[] g = m_spawnedItems;
@@ -109,7 +117,26 @@ public class ShopKeeper : MonoBehaviour {
     {
         for (int i = 0; i < m_spawnedItems.Length; i++)
         {
+            if (m_spawnedItems[i].GetComponent<Item>().GetEquipped())
+            {
+                RemoveFromItemList(i);
+                break;
+            }
             m_spawnedItems[i].SetActive(visible);
+        }
+    }
+
+    void RemoveFromItemList(int index)
+    {
+        GameObject[] g = new GameObject[m_spawnedItems.Length-1];
+
+        for (int i = 0; i < index; i++)
+        {
+            g[i] = m_spawnedItems[i];
+        }
+        for (int i = index; i < g.Length; i++)
+        {
+            g[i] = m_spawnedItems[i];
         }
     }
 }
