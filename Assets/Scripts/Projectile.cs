@@ -51,7 +51,7 @@ public class Projectile : MonoBehaviour {
         else if (c.CompareTag(("Item")) && !m_hostile) //Item
         {
             Manager.GetPlayer().GetComponent<PlayerStats>().AddItem(c.gameObject);
-            c.GetComponent<Item>().DestroyItem(true);
+            c.GetComponent<Item>().PickupItem(true);
             DestroyThis();
         }
     }

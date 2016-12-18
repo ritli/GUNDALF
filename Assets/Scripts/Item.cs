@@ -7,6 +7,9 @@ public struct ItemStats
     public float speed;
     public int health;
     public int damage;
+    public bool visibleOnEquip;
+
+    public Vector2 offset;
 }
 
 public class Item : MonoBehaviour {
@@ -25,11 +28,14 @@ public class Item : MonoBehaviour {
     {
         Manager.GetPlayer().GetComponent<PlayerStats>().UpdateStats(m_stats, -1);
     }
-
-    public void DestroyItem(bool equip)
+    /// <summary>
+    /// Disables collider and sprite renderer based on if item will be equipped or not
+    /// </summary>
+    /// <param name="equip"></param>
+    public void PickupItem(bool equip)
     {
-        GetComponent<Collider2D>().enabled = false;
-        GetComponent<SpriteRenderer>().enabled = equip;
+        GetComponent<Collider2D>().enabled = !equip;
+
         if (equip)
         {
             Equip();

@@ -5,6 +5,7 @@ public class Manager : MonoBehaviour {
 
     PlayerMove m_player;
     UIManager m_canvas;
+    CameraController m_camera;
 
     static Manager m_instance;
 
@@ -25,6 +26,7 @@ public class Manager : MonoBehaviour {
     {
         m_player = FindObjectOfType<PlayerMove>();
         m_canvas = FindObjectOfType<UIManager>();
+        m_camera = FindObjectOfType<CameraController>();
     }
 
     public static UIManager GetCanvas()
@@ -35,5 +37,9 @@ public class Manager : MonoBehaviour {
     public static PlayerMove GetPlayer()
     {
         return m_instance.m_player;
+    }
+    public static CameraController GetCamera()
+    {
+        return m_instance.m_camera;
     }
 }

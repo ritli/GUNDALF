@@ -17,13 +17,15 @@ public class PlayerStats : MonoBehaviour {
     {
         m_itemList.Add(i);
         i.transform.parent = transform;
-        i.transform.position = transform.position;
+        i.transform.position = transform.position + (Vector3)i.GetComponent<Item>().m_stats.offset;
+        i.gameObject.GetComponent<SpriteRenderer>().enabled = i.GetComponent<Item>().m_stats.visibleOnEquip;
     }
 
     void CreateItemObject(GameObject g)
     {
 
     }
+
     /// <summary>
     /// Updates player stats from external source.
     /// </summary>

@@ -11,6 +11,7 @@ public class PlayerGun : MonoBehaviour {
     PlayerMove m_player;
     AudioSource m_audio;
     CameraController m_camera;
+    UIManager m_canvas;
 
     bool m_reloadplayed = false;
 
@@ -22,12 +23,14 @@ public class PlayerGun : MonoBehaviour {
         m_sprite = GetComponent<SpriteRenderer>();
         m_player = GetComponentInParent<PlayerMove>();
         m_camera = Camera.main.GetComponent<CameraController>();
+        m_canvas = Manager.GetCanvas();
     }
 	
 	void Update () {
         if (!m_player.m_controlsDisabled) { 
             LookAtMouse();
             Shoot();
+            m_canvas.UpdateCrosshair();
         }
     }
 
