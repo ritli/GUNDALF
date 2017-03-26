@@ -13,8 +13,6 @@ public class Projectile : MonoBehaviour {
 
     Collider2D m_col;
 
-    
-
     public void Init(float speed, float damage)
     {
         speed = m_speed;
@@ -50,7 +48,6 @@ public class Projectile : MonoBehaviour {
         }
         else if (c.CompareTag(("Item")) && !m_hostile) //Item
         {
-            Manager.GetPlayer().GetComponent<PlayerStats>().AddItem(c.gameObject);
             c.GetComponent<Item>().PickupItem(true);
             DestroyThis();
         }

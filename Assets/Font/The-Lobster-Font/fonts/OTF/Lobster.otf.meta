@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 57f1343f0eb2a1f4e82be48cdc9b8eb3
+timeCreated: 1490284168
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Lobster
+  fontNames:
+  - Lobster
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 27d3141f4c72cb34e8dfa634bd06eff5, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -5,6 +5,7 @@ public class PlayerGun : MonoBehaviour {
 
     public GameObject m_bullet;
     public float m_cooldown;
+    public Item m_gunItem;
     float m_currentCD;
 
     SpriteRenderer m_sprite;
@@ -14,6 +15,7 @@ public class PlayerGun : MonoBehaviour {
     UIManager m_canvas;
 
     bool m_reloadplayed = false;
+    bool m_canShoot = true;
 
     public AudioClip m_reloadSound;
     public AudioClip m_gunshotSound;
@@ -24,12 +26,35 @@ public class PlayerGun : MonoBehaviour {
         m_player = GetComponentInParent<PlayerMove>();
         m_camera = Camera.main.GetComponent<CameraController>();
         m_canvas = Manager.GetCanvas();
+        EquipGun(m_gunItem);
     }
 	
+    public void EquipGun(Item i)
+    {
+        m_canShoot = i;
+        m_gunItem = i;
+
+        if (i)
+        {
+            PlayReload();
+            m_sprite.enabled = true;
+            m_sprite.sprite = i.m_sprite;
+        }
+        else
+        {
+            m_sprite.enabled = false;
+        }
+
+    }
+
 	void Update () {
         if (!m_player.m_controlsDisabled) { 
             LookAtMouse();
-            Shoot();
+
+            if (m_canShoot){ 
+                ShootUpdate();
+            }
+
             m_canvas.UpdateCrosshair();
         }
     }
@@ -52,7 +77,7 @@ public class PlayerGun : MonoBehaviour {
         }
     }
 
-    void Shoot()
+    void ShootUpdate()
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
