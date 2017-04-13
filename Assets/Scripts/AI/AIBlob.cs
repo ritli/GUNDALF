@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AIBlob : MonoBehaviour {
+public enum State
+{
+    MOVING, IDLE, DYING, ATTACKING
+}
 
-    public enum State
-    {
-        MOVING, IDLE, DYING, ATTACKING
-    }
+public class AIBlob : MonoBehaviour {
 
     public State m_state;
     public float m_attackRange;
