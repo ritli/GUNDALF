@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum TriggerType
 {
-    onArea, onPickup, onKill
+    onArea, onPickup, onKill, onDialogueEnd, onDialogueStart
 }
 
 public enum TriggererType
@@ -14,14 +14,27 @@ public enum TriggererType
 
 public class Trigger : MonoBehaviour {
 
-    public delegate void TriggerEvent();
+    public delegate void OnTriggerEvent();
+    public OnTriggerEvent onTriggerEvent;
+
 
     public TriggerType m_triggerType;
     public TriggererType m_triggererType;
 
-    public TriggerEvent m_triggerEvent;
+    public DialogueContainer m_dialogue;
+    public float m_timeToTrigger = 0;
 
     bool m_canRun;
+
+    void OnEnable()
+    {
+        TriggerStart();
+    }
+
+    void OnDisable()
+    {
+        TriggerEnd();
+    }
 
     void OnValidate()
     {
@@ -54,31 +67,16 @@ public class Trigger : MonoBehaviour {
         }
     }
 
-    void Update()
+    void TriggerEvent()
     {
-        switch (m_triggerType)
-        {
-            case TriggerType.onArea:
-                if (!GetComponent<Collider2D>())
-                {
-                    Debug.LogError("No collider attached to trigger");
-                }
+        Invoke("onTrigger", m_timeToTrigger);
+    }
 
-                break;
-            case TriggerType.onPickup:
-                if (!GetComponent<Item>())
-                {
-                    Debug.LogError("No item attached to trigger");
-                }
-                break;
-            case TriggerType.onKill:
-                if (!GetComponent<PlayerStats>() || !GetComponent<AIStats>())
-                {
-                    Debug.LogError("No stats attached to trigger");
-                }
-                break;
-            default:
-                break;
+    void onTrigger()
+    {
+        if (onTriggerEvent != null)
+        {
+            onTriggerEvent();
         }
     }
 
@@ -86,7 +84,7 @@ public class Trigger : MonoBehaviour {
     {
         if (m_triggerType.Equals(TriggerType.onArea))
         {
-            m_triggerEvent();
+            TriggerEvent();
         }
     }
 
@@ -109,6 +107,39 @@ public class Trigger : MonoBehaviour {
 
                 break;
             case TriggerType.onKill:
+                break;
+
+            case TriggerType.onDialogueStart:
+                m_dialogue.DialogueStart += TriggerEvent;
+                break;
+            case TriggerType.onDialogueEnd:
+                m_dialogue.DialogueEnd += TriggerEvent;
+                break;
+            default:
+                break;
+        }
+    }
+
+    void TriggerEnd()
+    {
+        switch (m_triggerType)
+        {
+            case TriggerType.onArea:
+
+
+                break;
+            case TriggerType.onPickup:
+
+
+                break;
+            case TriggerType.onKill:
+                break;
+
+            case TriggerType.onDialogueStart:
+                m_dialogue.DialogueStart -= TriggerEvent;
+                break;
+            case TriggerType.onDialogueEnd:
+                m_dialogue.DialogueEnd -= TriggerEvent;
                 break;
             default:
                 break;

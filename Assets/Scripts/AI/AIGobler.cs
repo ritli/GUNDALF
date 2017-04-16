@@ -96,6 +96,7 @@ public class AIGobler : MonoBehaviour {
             case State.IDLE:
                 break;
             case State.DYING:
+                GetComponent<DeathEvent>().TriggerEvent();
                 Destroy(gameObject);
                 break;
             default:
@@ -107,7 +108,7 @@ public class AIGobler : MonoBehaviour {
     {
         m_onCooldown = true;
 
-        Manager.GetPlayerStats().ReceiveDamage(m_damage);
+        Manager.GetPlayerStats().ReceiveDamage(m_damage, transform.position);
 
         StartCoroutine(ApplyKnockback(m_knockBack));
 

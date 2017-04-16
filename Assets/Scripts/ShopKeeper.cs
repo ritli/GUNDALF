@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+#if UNITY_EDITOR
 using UnityEditor;
-
+#endif
 [RequireComponent(typeof(Collider2D))]
 public class ShopKeeper : MonoBehaviour {
 
@@ -13,6 +14,8 @@ public class ShopKeeper : MonoBehaviour {
 
     public bool m_spawnShopItems = false;
     public bool m_clearList = false;
+
+#if UNITY_EDITOR
 
     void OnDrawGizmosSelected()
     {
@@ -91,7 +94,8 @@ public class ShopKeeper : MonoBehaviour {
         }
     }
 
-	void Start () {
+#endif
+    void Start () {
         m_area = GetComponentInChildren<ShopKeeperArea>();
 
         InitSpawnedItems();

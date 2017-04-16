@@ -13,10 +13,12 @@ public class UIDialogue : MonoBehaviour {
     public AudioClip[] m_chatAudioClips;
     public AudioClip m_chatOpenClip;
     public AudioClip m_chatCloseClip;
+    public DialogueContainer m_container;
 
     AudioSource m_audio;
     Animator m_animator;
     Image m_image;
+    Text m_nameText;
 
     const float m_printInterval = 0.02f;
 
@@ -25,6 +27,7 @@ public class UIDialogue : MonoBehaviour {
         m_text = GetComponentInChildren<Text>();
         m_audio = GetComponent<AudioSource>();
         m_image = transform.FindChild("Portrait").GetComponent<Image>();
+        m_nameText = transform.FindChild("NamePanel").GetComponentInChildren<Text>();
     }
 
     void PlayRandomAudio()
@@ -52,7 +55,10 @@ public class UIDialogue : MonoBehaviour {
 
     IEnumerator PrintLoop()
     {
-        m_text.text = m_senderName + ": ";
+        m_nameText.transform.parent.gameObject.SetActive(true);
+        m_nameText.text = m_senderName;
+
+        m_text.text = null;
 
         Manager.GetPlayer().m_controlsDisabled = true;
 
@@ -82,10 +88,13 @@ public class UIDialogue : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
 
+        m_container.EventEnded();
         Manager.GetPlayer().m_controlsDisabled = false;
 
         PlayCloseAnim();
         PlayCloseSound();
+
+        m_nameText.transform.parent.gameObject.SetActive(false); 
     }
 
     void PlayOpenAnim()

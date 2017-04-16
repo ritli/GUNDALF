@@ -27,8 +27,9 @@ public class UIManager : MonoBehaviour {
         m_getItem.PlayGetItem(i);
     }
 
-    public void PrintMessage(string message, string name, Sprite portrait, Color color)
+    public void PrintMessage(string message, string name, Sprite portrait, Color color, DialogueContainer thisObject)
     {
+        m_dialogue.m_container = thisObject;
         m_dialogue.m_dialogueToPrint = message;
         m_dialogue.PrintText(name, portrait, color);
     }

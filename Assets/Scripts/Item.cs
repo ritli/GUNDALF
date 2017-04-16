@@ -7,9 +7,8 @@ public enum ItemType
 }
 
 [System.Serializable]
-public struct ItemStats
+public class ItemStats
 {
-    public ItemType itemType;
     public string name;
     public float speed;
     public int health;
@@ -18,25 +17,34 @@ public struct ItemStats
 
     public Vector2 offset;
 }
+
+[System.Serializable]
+public class GunStats
+{
+    public int shotCount;
+    public GameObject bullet;
+    public bool flashlight;
+}
     
 public class Item : MonoBehaviour {
 
+    public delegate void onPickup();
+    public onPickup pickupEvent;
+
+    public ItemType m_itemType;
     public Sprite m_sprite;
     public bool m_EquipOnPickup;
     public ItemStats m_stats;
+    public GunStats m_gunStats;
 
     bool m_inShop;
     bool m_equipped;
 
-    void Equip()
+    void UpdateStats(int mult)
     {
-        Manager.GetPlayer().GetComponent<PlayerStats>().UpdateStats(m_stats, 1);
+        Manager.GetPlayer().GetComponent<PlayerStats>().UpdateStats(m_stats, mult);
     }
-
-    void UnEquip()
-    {
-        Manager.GetPlayer().GetComponent<PlayerStats>().UpdateStats(m_stats, -1);
-    }
+    
     /// <summary>
     /// Disables collider and sprite renderer based on if item will be displayed on player or not
     /// </summary>
@@ -45,20 +53,26 @@ public class Item : MonoBehaviour {
     {
         GetComponent<Collider2D>().enabled = !equip;
 
-        switch (m_stats.itemType)
+        if (pickupEvent != null)
+        {
+            pickupEvent();
+        }
+
+        switch (m_itemType)
         {
             case ItemType.gun:
                 Manager.GetPlayer().GetComponentInChildren<PlayerGun>().EquipGun(this);
                 Manager.GetCanvas().PlayGetItem(this);
-                Equip();
-                print("Delete");
+
+                UpdateStats(1);
+
                 gameObject.SetActive(false);
                 break;
             case ItemType.armor:
                 
                 if (equip)
                 {
-                    Equip();
+                    UpdateStats(1);
                     m_equipped = equip;
                 }
                 break;
@@ -66,7 +80,7 @@ public class Item : MonoBehaviour {
                 GetComponent<Collider2D>().enabled = !equip;
                 if (equip)
                 {
-                    Equip();
+                    UpdateStats(1);
                     m_equipped = equip;
                 }
                 break;

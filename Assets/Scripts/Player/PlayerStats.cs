@@ -45,4 +45,33 @@ public class PlayerStats : MonoBehaviour {
 
         Manager.GetCanvas().UpdateHealthbar(m_currenthealth, m_health);
     }
+
+    public void ReceiveDamage(int amount, Vector3 location)
+    {
+        float knockScale = 1;
+
+        ReceiveDamage(amount);
+        StartCoroutine(ApplyKnockback(amount * knockScale, location));
+    }
+
+    IEnumerator ApplyKnockback(float knockback, Vector3 location)
+    {
+        float knockbackTime = 0.4f;
+        float time = 0;
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+
+        Vector3 direction = (transform.position - location).normalized;
+
+        while (time < knockbackTime)
+        {
+            sprite.color = Color.Lerp(Color.red, Color.white, time / knockbackTime);
+
+            knockback = Mathf.Lerp(knockback, 0, time / knockbackTime);
+
+            transform.Translate(direction * knockback * Time.deltaTime);
+
+            yield return new WaitForEndOfFrame();
+            time += Time.deltaTime;
+        }
+    }
 }

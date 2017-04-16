@@ -39,9 +39,11 @@ public class PlayerGun : MonoBehaviour {
             PlayReload();
             m_sprite.enabled = true;
             m_sprite.sprite = i.m_sprite;
+            GetComponentInChildren<Light>().enabled = i.m_gunStats.flashlight;
         }
         else
         {
+            GetComponentInChildren<Light>().enabled = false;
             m_sprite.enabled = false;
         }
 
@@ -85,8 +87,15 @@ public class PlayerGun : MonoBehaviour {
             {
                 m_reloadplayed = false;
                 m_currentCD = 0f;
+
                 Projectile p = ((GameObject)Instantiate(m_bullet, transform.position + transform.up * 0.8f, transform.rotation)).GetComponent<Projectile>();
                 p.SetLayer(GetComponent<SpriteRenderer>().sortingOrder);
+                for (int i = 1; i < m_gunItem.m_gunStats.shotCount; i++)
+                {
+                    Projectile b = ((GameObject)Instantiate(m_bullet, transform.position + transform.up * 0.8f + transform.right * i * 0.4f * (-1 * i%2 + (1 * i+1%2)), transform.rotation)).GetComponent<Projectile>();
+                    b.SetLayer(GetComponent<SpriteRenderer>().sortingOrder);
+                }
+             
                 PlayGunshot();
                 m_camera.SetScreenShake(m_cooldown, 1f);
             }

@@ -5,8 +5,11 @@ using System.Collections;
 public class LayerPositioner : MonoBehaviour {
 
     public bool m_RunInEditor = false;
-
+    public bool m_BaseOnParent = false;
+    [Range(-10, 10)]
+    public int m_parentOffset;
     SpriteRenderer m_renderer;
+    SpriteRenderer m_parent;
 
     void OnValidate()
     {
@@ -24,6 +27,12 @@ public class LayerPositioner : MonoBehaviour {
         }
         else
         {
+            if (m_BaseOnParent)
+            {
+                m_parent = transform.parent.GetComponent<SpriteRenderer>();
+
+            }
+
             m_renderer = GetComponent<SpriteRenderer>();
         }
 	}
@@ -34,8 +43,18 @@ public class LayerPositioner : MonoBehaviour {
 
     void PlaceInLayer()
     {
-        int layer = Mathf.FloorToInt(transform.position.y * 10);
+        int layer;
 
-        m_renderer.sortingOrder = -layer;
+        if (m_BaseOnParent)
+        {
+            layer = m_parent.sortingOrder + m_parentOffset;
+        }
+        else
+        {
+            layer = -Mathf.FloorToInt(transform.position.y * 10);
+        }
+
+        m_renderer.sortingOrder = layer;
     }
+
 }

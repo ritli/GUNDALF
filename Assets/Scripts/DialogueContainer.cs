@@ -12,12 +12,30 @@ public class DialogueContainer : MonoBehaviour {
     public string m_Dialogue;
     public Sprite m_portrait;
     public Color color;
-    [Space]
 
+    public delegate void OnDialogueEnd();
+    public delegate void OnDialogueStart();
+    public OnDialogueEnd DialogueEnd;
+    public OnDialogueStart DialogueStart;
 
-    [Header("Time Options")]
-    
     public float m_duration;
+
+    void OnEnable()
+    {
+        if (m_triggerType.Equals(TriggerType.onPickup))
+        {
+            GetComponent<Item>().pickupEvent += TriggerEvent;
+        }
+    }
+
+    void OnDisable()
+    {
+        if (m_triggerType.Equals(TriggerType.onPickup))
+        {
+            GetComponent<Item>().pickupEvent -= TriggerEvent;
+        }
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -29,8 +47,26 @@ public class DialogueContainer : MonoBehaviour {
     }
     void TriggerEvent()
     {
-        Manager.GetCanvas().PrintMessage(m_Dialogue, m_Sender, m_portrait, color);
+        EventStarted();
+
+        Manager.GetCanvas().PrintMessage(m_Dialogue, m_Sender, m_portrait, color, this);
 
         GetComponent<Collider2D>().enabled = false;
+    }
+
+    public void EventEnded()
+    {
+        if (DialogueEnd != null)
+        {
+            DialogueEnd();
+        }
+    }
+
+    public void EventStarted()
+    {
+        if (DialogueStart != null)
+        {
+            DialogueStart();
+        }
     }
 }
